@@ -35,6 +35,13 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
+                                                        <label for="">Type</label>
+                                                        <select class="form-control" name="type" id="">
+                                                            <option value="free">Free</option>
+                                                            <option value="paid">Paid</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="">Category</label>
                                                         <select class="form-control" name="category_id" id="">
                                                             @foreach ($categories as $item)

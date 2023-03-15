@@ -10,36 +10,14 @@
                 </span>
 
                 <ul class="all-category-list">
-                    <li class="all-category-list-item"><a href="https://www.cupcom.com.br/"
-                            class="all-category-list-link">Smartphones<i class="fas fa-angle-right"></i></a>
-                        <div class="category-second-list">
-                            <ul class="category-second-list-ul">
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Iphone 10</a></li>
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy Note 10</a>
-                                </li>
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Motorola One </a>
-                                </li>
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy A80 </a>
-                                </li>
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy M </a></li>
-                                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Huaway P30 </a>
-                                </li>
-                            </ul>
-
-                            <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
-                        </div>
-                    </li>
-                    <li class="all-category-list-item"><a href="https://www.cupcom.com.br/"
-                            class="all-category-list-link">Furniture <i class="fas fa-angle-right"></i></a></li>
-                    <li class="all-category-list-item"><a href="https://www.cupcom.com.br/"
-                            class="all-category-list-link">Toys<i class="fas fa-angle-right"></i></a></li>
-                    <li class="all-category-list-item"><a href="https://www.cupcom.com.br/"
-                            class="all-category-list-link">Computing<i class="fas fa-angle-right"></i></a></li>
-                    <li class="all-category-list-item"><a href="https://www.cupcom.com.br/"
-                            class="all-category-list-link">Games<i class="fas fa-angle-right"></i></a></li>
-                    <li class="all-category-list-item"><a href="" class="all-category-list-link">Automotive<i
-                                class="fas fa-angle-right"></i></a></li>
-
+                    @php
+                        $categories = DB::table('categories')->get();
+                    @endphp
+                    @foreach ($categories as $item)
+                        <li class="all-category-list-item"><a href="{{route('tools.category' , $item->id)}}"
+                                class="all-category-list-link">{{$item->name}}<i class="fas fa-angle-right"></i></a>
+                        </li>
+                    @endforeach
                 </ul>
             </label>
 

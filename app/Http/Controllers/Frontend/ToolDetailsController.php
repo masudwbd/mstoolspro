@@ -9,7 +9,7 @@ use DB;
 class ToolDetailsController extends Controller
 {
     public function index($id){
-   
-        return view('frontend.tool_details');
+        $data = DB::table('freetools')->where('id', $id)->first();
+        return view('frontend.tool_details',compact('data'));
     }
 }

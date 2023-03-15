@@ -2,7 +2,6 @@
 @include('layouts.frontend_partial.header')
 @include('layouts.frontend_partial.navbar')
 @section('content')
-
     @php
         $settings = DB::table('settings')->first();
     @endphp
@@ -19,12 +18,20 @@
                     </div>
                     <div class="buttons-container mt-3">
                         <div class="buttons-container d-flex justify-content-between text-center">
-                            <div class="sign-up mr-3">
+                            <div class="all-tools mr-3">
+                               <a href="{{route('tools.all')}}">
+                                <button class="btn">See Tools</button>
+                               </a>
+                            </div>
+                            @if(Auth::user())
+                            <div class="sign-up ml-3">
+                                <button>Contact Us</button>
+                            </div>
+                            @else
+                            <div class="sign-up ml-3">
                                 <button>Sign Up</button>
                             </div>
-                            <div class="all-tools ml-3">
-                                <button class="btn">See Tools</button>
-                            </div>
+                            @endif
                         </div>
                     </div>
 
@@ -47,7 +54,7 @@
         <div class="row mx-auto pt-2" style="width: 75%">
             <!-- DEMO 3 Item-->
             <div class="col-lg-4 mb-3 mb-lg-0">
-                <a href="">
+                <a href="{{ route('tools.all') }}">
                     <div class="hover hover-3 text-white rounded"><img
                             src="https://img.freepik.com/premium-vector/spreadsheet-design-vector-illustration_24877-31338.jpg?size=626&ext=jpg&uid=R94946501&ga=GA1.2.191617848.1677514035&semt=popular"
                             alt="">
@@ -65,7 +72,7 @@
             </div>
             <!-- DEMO 3 Item    -->
             <div class="col-lg-4">
-                <a href={{route('tools.free')}}>
+                <a href={{ route('tools.free') }}>
                     <div class="hover hover-3 text-white rounded"><img src="files/images/free.jpg" alt="">
                         <div class="hover-overlay"></div>
                         <div class="hover-3-content px-5 py-4">
@@ -80,7 +87,7 @@
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="">
+                <a href="{{route('tools.paid')}}">
                     <div class="hover hover-3 text-white rounded"><img src="files/images/premium.jpg" alt="">
                         <div class="hover-overlay"></div>
                         <div class="hover-3-content px-5 py-4">
@@ -103,11 +110,32 @@
                 <h1 class="text-center" style="color:#0D5EAF">Our Tools</h1>
                 <p class="text-center lead" style="color:#0D5EAF">Creation that brings speed</p>
             </div>
+            @php
+                $tools = DB::table('freetools')->get();
+            @endphp
+            <div class="">
+                <div class="row">
+                    @foreach ($tools as $tool)
+                        <div class="col-lg-4">
+                            <div class="course_card">
+                                <div class="course_card_img">
+                                    <img src='{{ $tool->thumbnail }}', alt='course' />
+                                </div>
+                                <div class="course_card_content">
+                                    <h3>{{ $tool->title }}</h3>
+                                    <p style="font-size: 18px">{{ $tool->subtitle }}</p>
+                                </div>
+                                <div class="course_card_footer">
+                                    <a href="{{ route('tool.details', $tool->id) }}" class="nav-item">Click To See
+                                        Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
     @include('layouts.frontend_partial.footer')
 @endsection
-
-
-

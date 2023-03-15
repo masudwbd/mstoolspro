@@ -23,6 +23,7 @@ class ToolsController extends Controller
     }
     public function store(Request $request){
         $data = array(
+            'type' => $request->type,
             'category_id' => $request->category_id,
             'title' => $request->title,
             'subtitle' => $request->subtitle,
@@ -33,9 +34,15 @@ class ToolsController extends Controller
         );
 
         $file = $request->file('tool');
+        // Get the public directory path
+        $publicPath = public_path();
+        // Get the original filename
         $filename = $file->getClientOriginalName();
-        $file->storeAs('public', $filename);
-        $data['tool'] = 'backend/tools/'. $filename;
+        // Move the file to the public directory
+        $file->move($publicPath . '/tools' , $filename);
+
+
+        $data['tool'] = 'tools/'. $filename;
 
         $slug = Str::slug($request->title . '.');
         $photoname = $slug.'.'.$request->thumbnail->getClientOriginalExtension();
@@ -55,6 +62,7 @@ class ToolsController extends Controller
 
     public function update(Request $request){
         $data = array(
+            'type' => $request->type,
             'category_id' => $request->category_id,
             'title' => $request->title,
             'subtitle' => $request->subtitle,

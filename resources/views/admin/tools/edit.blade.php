@@ -3,6 +3,13 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
+                <label for="">Type</label>
+                <select class="form-control" name="type" id="">
+                    <option value="free" @if ($data->type == 'free' ) selected="" @endif >Free</option>
+                    <option value="paid"  @if ($data->type == 'paid' ) selected="" @endif >Paid</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="">Category</label>
                 @php
                     $categories = DB::table('categories')->get();
@@ -58,5 +65,5 @@
             </div>
         </div>
     </div>
-    <input type="submit" class="btn btn-success btn-block mt-5" value="Add Tool">
+    <input type="submit" class="btn btn-success btn-block mt-5" value="Update Tool">
 </form>

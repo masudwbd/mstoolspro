@@ -30,7 +30,20 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 
 
-// free tools 
-
+// tools 
+Route::get('/all-tools',[ToolListController::class,'alltools'])->name('tools.all');
 Route::get('/free-tools',[ToolListController::class,'freetools'])->name('tools.free');
-Route::get('tool-details/{id}/', [App\Http\Controllers\Frontend\ToolDetailsController::class, 'index'])->name('tool.details');
+Route::get('/paid-tools',[ToolListController::class,'paidtools'])->name('tools.paid');
+Route::get('/tools-category/{id}',[ToolListController::class,'categorytools'])->name('tools.category');
+Route::get('/tool-details/{id}', [App\Http\Controllers\Frontend\ToolDetailsController::class, 'index'])->name('tool.details');
+
+//download tool
+Route::get('/tool-details/{id}', [App\Http\Controllers\Frontend\ToolDetailsController::class, 'index'])->name('tool.details');
+Route::get('/download/{id}',  [App\Http\Controllers\Frontend\DownloadController::class, 'download'])->name('download');
+
+
+//user profile
+Route::get('/user',  [App\Http\Controllers\Frontend\UserController::class, 'index'])->name('user.profile');
+Route::post('/user-image-add',  [App\Http\Controllers\Frontend\UserController::class, 'store_picture'])->name('user.picture.add');
+Route::post('/user-image-update',  [App\Http\Controllers\Frontend\UserController::class, 'update_picture'])->name('user.picture.update');
+

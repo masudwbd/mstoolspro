@@ -7,8 +7,11 @@
                 <div class="col-md-12">
                     <div class="login-form-container">
                         <div class="card login-card">
-                            <div class="card-header">
-                                <img src="files/images/welcome.jpg" style="height:300px" alt="">
+                            <div class="welcome-image pt-3">
+                                <img src="files/images/welcome.PNG" alt="">
+                            </div>
+                            <div class="welcome-text">
+                                <h1 class="text-center">Welcome To MsToolsPro!</h1>
                             </div>
 
                             <div class="card-body" style="width: 90%">
@@ -16,9 +19,9 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group text-center">
+                                            <div class="form-group ">
                                                 <label for="email"
-                                                    class="col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                                    class="col-form-label">{{ __('Email Address') }}</label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                                     value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -78,7 +81,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="text-center">
-                                                <a href="">
+                                                <a href="{{route('register')}}">
                                                     Don't have an account yet? Create Now!
                                                 </a>
                                             </div>

@@ -15,11 +15,13 @@
 <div class="header-container">
     <div class="container header-flex">
         <!-- logo -->
-        <strong class="logo">
-            <div class="logo-container">
-                <img src="{{ $settings->logo }}" alt="">
-            </div>
-        </strong>
+        <a href="{{ route('home') }}">
+            <strong class="logo">
+                <div class="logo-container">
+                    <img src="{{ asset($settings->logo) }}" alt="">
+                </div>
+            </strong>
+        </a>
         <!-- open nav mobile -->
 
         <!--search -->
@@ -32,37 +34,34 @@
             </div>
         </label>
         <!-- // search -->
-        <nav class="nav-content">
-            <!-- nav -->
-            <ul class="nav-content-list">
-                <li class="nav-content-item account-login">
-                    <label class="open-menu-login-account" for="open-menu-login-account">
-
-                        <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
-
-                        @if (Auth::user())
-                            <i class="fas fa-user-circle mr-2"></i>
-                            {{ Auth::user()->name }}
-                            <span class="item-arrow"></span>
-                        @else
-                            <i class="fas fa-user-circle mr-2"></i>
-                            Create Account
-                            <span class="item-arrow"></span>
-                        @endif
-
-                        <!-- submenu -->
-                        <ul class="login-list" style="z-index: 1">
-                            <li class="login-list-item"><a href="https://www.cupcom.com.br/">My account</a></li>
-                            <li class="login-list-item"><a href={{route("logout")}}>logout</a></li>
-                    </label>
-            </ul>
-            </li>
-            <li class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
-                        class="fas fa-heart"></i></a></li>
-            <li class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
-                        class="fas fa-shopping-cart"></i></a></li>
-            <!-- call to action -->
-            </ul>
+        <nav class="nav-content" style="width:200px">
+            <div class="d-flex justify-content-between">
+                <div >
+                    <a  href="{{route('user.profile')}}" >
+                            @if (Auth::user())
+                            <label class="" style="cursor:pointer" class="open-menu-login-account" for="open-menu-login-account">
+                                <img src="{{asset(Auth::user()->image)}}" style="height:30px;width:30px;border-radius:50%"  alt="">
+                                {{ Auth::user()->name }}
+                                <span class="item-arrow"></span>
+                            </label>
+                            @else
+                            <label class="" style="cursor:pointer" class="open-menu-login-account" for="open-menu-login-account">
+                                <i class="fas fa-user-circle mr-2"></i>
+                                Create Account
+                                <span class="item-arrow"></span>
+                            </label>
+                            @endif
+                    </a>
+                </div>
+                <div class="mt-1">
+                    <div class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
+                        class="fas fa-heart"></i></a></div>
+                </div>
+                <div class="mt-1">
+                    <div class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
+                        class="fas fa-shopping-cart"></i></a></div>
+                </div>
+            </div>
         </nav>
     </div>
 </div>

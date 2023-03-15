@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Settings</h1>
+                        <h1 class="m-0">Tools</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
 
@@ -42,7 +42,10 @@
                                         @foreach ($data as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->category_id }}</td>
+                                                @php
+                                                    $category = DB::table('categories')->where('id', $item->category_id )->first();
+                                                @endphp
+                                                <td>{{ $category ->name }}</td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->subtitle }}</td>
                                                 <td>
@@ -53,7 +56,7 @@
                                                 <td>{{ $item->video }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-info edit" data-id="{{$item->id}}" data-toggle="modal" data-target="#editModal" id="edit"> <i class="fas fa-edit"></i> </a>
-                                                    <a href="{{ route('tools.delete',$item->id) }}" class="btn btn-danger"
+                                                    <a href="{{ route('tools.delete',$item->id) }}" class="btn btn-danger mt-4"
                                                         id="delete"> <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>
@@ -100,7 +103,7 @@
     <script>
         $('body').on('click', '.edit', function() {
             let cat_id = $(this).data('id');
-            $.get("tools/edit/" + cat_id, function(data) {
+            $.get("freetools/edit/" + cat_id, function(data) {
                 $(".modal-body").html(data);
             });
         });

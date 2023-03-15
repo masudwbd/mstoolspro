@@ -9,7 +9,7 @@
                     <div class="col-lg-4">
                         <div class="course_card">
                             <div class="course_card_img">
-                                <img src='{{ $tool->thumbnail }}', alt='course' />
+                                <img src='{{ asset( $tool->thumbnail) }}', alt='course' />
                             </div>
                             <div class="course_card_content">
                                 <h3>{{ $tool->title }}</h3>
