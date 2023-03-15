@@ -25,7 +25,7 @@
                     $tools = DB::table('freetools')->get();
                 @endphp
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fa-duotone fa-gear"></i></span>
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
                     <div class="info-box-content">
 

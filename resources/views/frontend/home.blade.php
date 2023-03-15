@@ -19,18 +19,18 @@
                     <div class="buttons-container mt-3">
                         <div class="buttons-container d-flex justify-content-between text-center">
                             <div class="all-tools mr-3">
-                               <a href="{{route('tools.all')}}">
-                                <button class="btn">See Tools</button>
-                               </a>
+                                <a href="{{ route('tools.all') }}">
+                                    <button class="btn">See Tools</button>
+                                </a>
                             </div>
-                            @if(Auth::user())
-                            <div class="sign-up ml-3">
-                                <button>Contact Us</button>
-                            </div>
+                            @if (Auth::user())
+                                <div class="sign-up ml-3">
+                                    <button>Contact Us</button>
+                                </div>
                             @else
-                            <div class="sign-up ml-3">
-                                <button>Sign Up</button>
-                            </div>
+                                <div class="sign-up ml-3">
+                                    <button>Sign Up</button>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="{{route('tools.paid')}}">
+                <a href="{{ route('tools.paid') }}">
                     <div class="hover hover-3 text-white rounded"><img src="files/images/premium.jpg" alt="">
                         <div class="hover-overlay"></div>
                         <div class="hover-3-content px-5 py-4">
@@ -119,15 +119,14 @@
                         <div class="col-lg-4">
                             <div class="course_card">
                                 <div class="course_card_img">
-                                    <img src='{{ $tool->thumbnail }}', alt='course' />
+                                    <img src='{{ asset( $tool->thumbnail) }}', alt='course' />
                                 </div>
                                 <div class="course_card_content">
-                                    <h3>{{ $tool->title }}</h3>
-                                    <p style="font-size: 18px">{{ $tool->subtitle }}</p>
+                                    <h3 class="text-center">{{ $tool->title }}</h3>
+                                    <p class="text-center" style="font-size: 18px">{{ $tool->subtitle }}</p>
                                 </div>
-                                <div class="course_card_footer">
-                                    <a href="{{ route('tool.details', $tool->id) }}" class="nav-item">Click To See
-                                        Details</a>
+                                <div class="course_card_footer text-center">
+                                    <a href="{{route('tool.details' , $tool->id )}}" class="nav-item">Click To See Details</a>
                                 </div>
                             </div>
                         </div>

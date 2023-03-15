@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ToolListController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +49,12 @@ Route::get('/user',  [App\Http\Controllers\Frontend\UserController::class, 'inde
 Route::post('/user-image-add',  [App\Http\Controllers\Frontend\UserController::class, 'store_picture'])->name('user.picture.add');
 Route::post('/user-image-update',  [App\Http\Controllers\Frontend\UserController::class, 'update_picture'])->name('user.picture.update');
 
+
+//stripe payment
+Route::post('/payment/{id}',  [StripeController::class, 'payment'])->name('payment');
+Route::get('/payment-success',  [StripeController::class, 'success'])->name('payment.success');
+Route::get('/payment-cancel',  [StripeController::class, 'cancel'])->name('payment.cancel');
+
+
+//store reviews
+Route::post('/store-review',  [ReviewController::class, 'store'])->name('review.store');

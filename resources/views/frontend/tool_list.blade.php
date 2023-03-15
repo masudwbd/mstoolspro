@@ -12,10 +12,10 @@
                                 <img src='{{ asset( $tool->thumbnail) }}', alt='course' />
                             </div>
                             <div class="course_card_content">
-                                <h3>{{ $tool->title }}</h3>
-                                <p style="font-size: 18px">{{ $tool->subtitle }}</p>
+                                <h3 class="text-center">{{ $tool->title }}</h3>
+                                <p class="text-center" style="font-size: 18px">{{ $tool->subtitle }}</p>
                             </div>
-                            <div class="course_card_footer">
+                            <div class="course_card_footer text-center">
                                 <a href="{{route('tool.details' , $tool->id )}}" class="nav-item">Click To See Details</a>
                             </div>
                         </div>
