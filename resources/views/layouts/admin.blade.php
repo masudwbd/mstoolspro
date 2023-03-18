@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <!DOCTYPE html>
@@ -45,10 +47,7 @@
     
     <body>
         <div class="main-container">
-            <div class="navbar-container">
-                @include('layouts.admin_partial.navbar')
-            </div>
-            <div class="dasboard-container">
+            <div class="dasboard-container mt-4">
                 @include('layouts.admin_partial.sidebar')
                 @yield('admin_content')
             </div>
@@ -58,6 +57,7 @@
         </script>
     
         <script src="{{asset('js/custom.js')}}"></script>
+        <script src="https://kit.fontawesome.com/f698781556.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

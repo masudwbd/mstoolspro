@@ -14,8 +14,8 @@
                         $categories = DB::table('categories')->get();
                     @endphp
                     @foreach ($categories as $item)
-                        <li class="all-category-list-item"><a href="{{route('tools.category' , $item->id)}}"
-                                class="all-category-list-link">{{$item->name}}<i class="fas fa-angle-right"></i></a>
+                        <li class="all-category-list-item"><a href="{{ route('tools.category', $item->id) }}"
+                                class="all-category-list-link">{{ $item->name }}<i class="fas fa-angle-right"></i></a>
                         </li>
                     @endforeach
                 </ul>
@@ -24,17 +24,15 @@
         </nav>
         <nav class="featured-category">
             <ul class="nav-row">
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
-                        style="text-decoration: none">Motivation</a></li>
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
-                        style="text-decoration: none">Objective</a></li>
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
-                        style="text-decoration: none">Free Utilities</a></li>
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
+                <li class="nav-row-list"><a href="{{route('tools.all')}}" class="nav-row-list-link"
                         style="text-decoration: none">Tools</a></li>
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
+                <li class="nav-row-list"><a href="{{route('tools.free')}}" class="nav-row-list-link"
+                        style="text-decoration: none">Free Utilities</a></li>
+                <li class="nav-row-list"><a href="{{route('frontend.blogs.all')}}" class="nav-row-list-link"
+                        style="text-decoration: none">Blogs</a></li>
+                <li class="nav-row-list"><a href="{{route('frontend.about_us')}}" class="nav-row-list-link"
                         style="text-decoration: none">About Us</a></li>
-                <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link"
+                <li class="nav-row-list"><a href="{{route('frontend.contact_us')}}" class="nav-row-list-link"
                         style="text-decoration: none">Contact Us</a></li>
             </ul>
         </nav>

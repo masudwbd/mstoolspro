@@ -64,10 +64,13 @@
 }
 .cards-container {
   padding: 20px;
-  padding-top: 110px;
+  padding-top: 50px;
 }
 .tools-container {
+  background: linear-gradient(105deg,#6e99e6 ,#093c94);
   padding-top: 60px;
+  margin-top: 50px;
+  padding-bottom:60px
 }
 .tools-container h1{
   font-size: 48px;
@@ -679,8 +682,9 @@
 }
 .course_card_footer {
   padding: 0px 0px;
-  margin-left: 10px;
+  margin-left:0px;
   margin-top: -20px;
+  padding-top:25px;
   padding-bottom: 25px; 
 }
 .course_card_footer a {
@@ -741,9 +745,9 @@ position: relative;
 background: linear-gradient(105deg,#6e99e6 ,#093c94);
 padding-top: 80px;
 padding-bottom: 40px;
+margin-top:80px
 }
 /*END FOOTER SOCIAL DESIGN*/
-.single_footer{}
 @media only screen and (max-width:768px) { 
 .single_footer{margin-bottom:30px;}
 }
@@ -964,9 +968,45 @@ text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 50%;
 }
-.chatbox{
-    display: flex;
-    align-items: end;
-    justify-content: end;
+
+/* about us  */
+
+.banner{
+    position: relative;
+    background-image: url('/files/images/banner.jpg');
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Change the alpha value to adjust opacity */
+}
+
+/* contact us  */
+
+.contact-banner{
+    position: relative;
+    background-image: url('/files/images/contact.jpg');
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.contact-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Change the alpha value to adjust opacity */
 }

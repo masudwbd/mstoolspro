@@ -16,7 +16,8 @@ class UserController extends Controller
 {
     public function index(){
         $user = DB::table("users")->where('id', Auth::user()->id)->first();
-        return view('frontend.profile.dashboard');
+        $orders = DB::table('orders')->where('user_id' , $user->id)->get();
+        return view('frontend.profile.dashboard', compact('orders'));
     }
 
     public function store_picture(Request $request){
@@ -57,4 +58,43 @@ class UserController extends Controller
     }
 
 
+    public function open_ticket(){
+        $tickets = DB::table('tickets')->where('user_id', Auth::id())->take(10)->get();
+        return view('frontend.profile.open_ticket', compact('tickets'));
+    }
+
+    public function create_ticket(){
+        return view('frontend.profile.create_ticket');
+    }
+
+
+    public function store_ticket(Request $request){
+        $data = array(
+            'user_id' => Auth::id(),
+            'subject' => $request->subject,
+            'service' => $request->service,
+            'priority' => $request->priority,
+            'message' => $request->message,
+        );
+        $photo = $request->image;
+        $photoname = uniqid().'.'.$photo->getClientOriginalExtension();
+        Image::make($photo)->resize(240, 120)->save('backend/files/tickets/'.$photoname);
+
+        $data['image'] = 'backend/files/tickets/'.$photoname;
+
+        DB::table('tickets')->insert($data);
+        
+
+        Toastr::success('Your ticket has been submitted', 'Title', ["positionClass" => "toast-top-right"]);
+        return redirect()->back();
+
+    }
+
+
+    
+    public function show_ticket($id){
+        $ticket = DB::table('tickets')->where('id', $id)->first();
+        $replies = DB::table('replies')->where('ticket_id', $ticket->id)->get();
+        return view('frontend.profile.show_ticket', compact('ticket','replies'));
+    }
 }

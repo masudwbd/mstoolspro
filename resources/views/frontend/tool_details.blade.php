@@ -40,7 +40,7 @@
             $reviews = DB::table('toolreviews')->get();
         @endphp
 
-        <div class="tool-details-container" style="background-color: #F0FAF8">
+        <div class="tool-details-container">
             <div class="container">
                 <div class="row pt-5">
                     <div class="col-lg-4">

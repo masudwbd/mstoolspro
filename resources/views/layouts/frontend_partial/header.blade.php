@@ -18,7 +18,7 @@
         <a href="{{ route('home') }}">
             <strong class="logo">
                 <div class="logo-container">
-                    <img src="{{ asset($settings->logo) }}" alt="">
+                    <img src="{{ asset($settings->logo) }}" style="margin-top:18px" alt="">
                 </div>
             </strong>
         </a>
@@ -54,12 +54,7 @@
                     </a>
                 </div>
                 <div class="mt-1">
-                    <div class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
-                        class="fas fa-heart"></i></a></div>
-                </div>
-                <div class="mt-1">
-                    <div class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i
-                        class="fas fa-shopping-cart"></i></a></div>
+                    <div class="nav-content-item"><a class="nav-content-link" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket "></i></a></div>
                 </div>
             </div>
         </nav>

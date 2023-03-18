@@ -25,11 +25,11 @@ $settings = DB::table('settings')->first();
                         <div class="single_footer single_footer_address">
                             <h4>Page Link</h4>
                             <ul>
-                                <li><a href="#">Lorem Ipsum</a></li>
-                                <li><a href="#">Simply dummy text</a></li>
-                                <li><a href="#">The printing and typesetting </a></li>
-                                <li><a href="#">Standard dummy text</a></li>
-                                <li><a href="#">Type specimen book</a></li>
+                                <li><a href="{{route('tools.all')}}">Tools</a></li>
+                                <li><a href="{{route('tools.free')}}">Free Utilities</a></li>
+                                <li><a href="{{route('frontend.blogs.all')}}">Blogs </a></li>
+                                <li><a href="{{route('frontend.about_us')}}">About Us</a></li>
+                                <li><a href="{{route('frontend.contact_us')}}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>

@@ -22,6 +22,4 @@ class Setting extends Model
         'linkdin',
         'youtube',
     ];
-
-    use HasFactory;
 }

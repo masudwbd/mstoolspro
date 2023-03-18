@@ -49,12 +49,30 @@ Route::get('/user',  [App\Http\Controllers\Frontend\UserController::class, 'inde
 Route::post('/user-image-add',  [App\Http\Controllers\Frontend\UserController::class, 'store_picture'])->name('user.picture.add');
 Route::post('/user-image-update',  [App\Http\Controllers\Frontend\UserController::class, 'update_picture'])->name('user.picture.update');
 
+//ticket
+Route::get('/open-ticket',  [App\Http\Controllers\Frontend\UserController::class, 'open_ticket'])->name('user.open_ticket');
+Route::get('/create-ticket',  [App\Http\Controllers\Frontend\UserController::class, 'create_ticket'])->name('user.create.ticket');
+Route::post('/store-ticket',  [App\Http\Controllers\Frontend\UserController::class, 'store_ticket'])->name('user.ticket.store');
+Route::get('/show-ticket/{id}',  [App\Http\Controllers\Frontend\UserController::class, 'show_ticket'])->name('user.ticket.show');
+
 
 //stripe payment
 Route::post('/payment/{id}',  [StripeController::class, 'payment'])->name('payment');
-Route::get('/payment-success',  [StripeController::class, 'success'])->name('payment.success');
+Route::get('/payment-success/{session_id}',  [StripeController::class, 'success'])->name('payment.success');
 Route::get('/payment-cancel',  [StripeController::class, 'cancel'])->name('payment.cancel');
 
 
 //store reviews
 Route::post('/store-review',  [ReviewController::class, 'store'])->name('review.store');
+
+
+//blog page
+Route::get('/blogs-list',  [HomeController::class, 'blogs'])->name('frontend.blogs.all');
+
+//about us page
+Route::get('/about-us',  [HomeController::class, 'about_us'])->name('frontend.about_us');
+
+//contact us page
+Route::get('/contact-us',  [HomeController::class, 'contact_us'])->name('frontend.contact_us');
+Route::post('/contact-message-store',  [HomeController::class, 'contact_message_store'])->name('contact.message.store');
+

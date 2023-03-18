@@ -6,6 +6,7 @@
         $settings = DB::table('settings')->first();
     @endphp
 
+
     {{-- header  --}}
 
     <div class="main-header-container">
@@ -24,12 +25,20 @@
                                 </a>
                             </div>
                             @if (Auth::user())
-                                <div class="sign-up ml-3">
-                                    <button>Contact Us</button>
-                                </div>
+                                <a href="{{ route('frontend.contact_us') }}">
+                                    <div class="sign-up ml-3">
+                                        <button>
+                                            Contact Us
+                                        </button>
+                                    </div>
+                                </a>
                             @else
                                 <div class="sign-up ml-3">
-                                    <button>Sign Up</button>
+                                    <button>
+                                        <a href="{{ route('register') }}">
+                                            Sign Up
+                                        </a>
+                                    </button>
                                 </div>
                             @endif
                         </div>
@@ -107,8 +116,8 @@
     <div class="tools-container">
         <div class="container">
             <div class="tools-header pt-5">
-                <h1 class="text-center" style="color:#0D5EAF">Our Tools</h1>
-                <p class="text-center lead" style="color:#0D5EAF">Creation that brings speed</p>
+                <h1 class="text-center text-light">Our Tools</h1>
+                <p class="text-center lead text-light">Creation that brings speed</p>
             </div>
             @php
                 $tools = DB::table('freetools')->get();
@@ -117,21 +126,54 @@
                 <div class="row">
                     @foreach ($tools as $tool)
                         <div class="col-lg-4">
-                            <div class="course_card">
-                                <div class="course_card_img">
-                                    <img src='{{ asset( $tool->thumbnail) }}', alt='course' />
+                            <a href="{{ route('tool.details', $tool->id) }}">
+                                <div class="course_card" style="border:1px solid black;height:400px">
+                                    <div class="course_card_img">
+                                        <img src='{{ asset($tool->thumbnail) }}', alt='course' />
+                                    </div>
+                                    <div class="course_card_content">
+                                        <h3 class="text-center">{{ $tool->title }}</h3>
+                                        <p class="text-center" style="font-size: 18px">{{ $tool->subtitle }}</p>
+                                        <div class="d-flex justify-content-center">
+                                            @if ($tool->price === '0')
+                                                <p class="text-center badge badge-primary" style="font-size: 24px">Free Tool
+                                                </p>
+                                            @else
+                                                <p class="text-center badge badge-primary" style="font-size: 24px">Price:
+                                                    {{ $tool->price }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="course_card_content">
-                                    <h3 class="text-center">{{ $tool->title }}</h3>
-                                    <p class="text-center" style="font-size: 18px">{{ $tool->subtitle }}</p>
-                                </div>
-                                <div class="course_card_footer text-center">
-                                    <a href="{{route('tool.details' , $tool->id )}}" class="nav-item">Click To See Details</a>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-container mt-5">
+        <div class="container">
+            <div class="tools-header pt-5">
+                <h1 class="text-center text-dark" style="font-size: 55px">Our Blogs</h1>
+                <p class="text-center" style="font-size: 24px">Blog that inspires you to get up and do better!</p>
+            </div>
+
+            <div class="blog-body">
+                @foreach ($blogs as $blog)
+                    <div class="row mt-5">
+                        <div class="col-lg-6">
+                            <img class="img mt-4" src="{{ $blog->thumbnail }}" height="600px" width="100%" />
+                        </div>
+                        <div class="col-lg-6">
+                            <h1>{{ $blog->title }}</h1>
+                            <p>{{ $blog->description }}</p>
+                            <p>Published On: {{ $blog->date }}</p>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div>

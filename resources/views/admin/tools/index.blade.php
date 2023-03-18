@@ -35,7 +35,6 @@
                                             <th>Thumbnail</th>
                                             <th>Price</th>
                                             <th style="width: 25%">Description</th>
-                                            <th>Video</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,10 +52,9 @@
                                                 </td>
                                                 <td>{{ $item->price }}</td>
                                                 <td style="width: 25%">{{ $item->description}}</td>
-                                                <td>{{ $item->video }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-info edit" data-id="{{$item->id}}" data-toggle="modal" data-target="#editModal" id="edit"> <i class="fas fa-edit"></i> </a>
-                                                    <a href="{{ route('tools.delete',$item->id) }}" class="btn btn-danger mt-4"
+                                                    <a href="{{ route('tools.delete',$item->id) }}" onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-danger "
                                                         id="delete"> <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>

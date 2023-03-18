@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-
+use DB;
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home');
+        $blogs = DB::table('blogs')->orderBy('date', 'DESC')->take('2')->get();
+        return view('frontend.home', compact('blogs'));
     }
 
 
@@ -37,4 +39,28 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+
+    public function blogs(){
+        $blogs = DB::table('blogs')->orderBy('date', 'DESC')->get();
+        return view('frontend.blogs.index', compact('blogs'));
+    }
+    public function about_us(){
+        return view('frontend.aboutus');
+    }
+    public function contact_us(){
+        return view('frontend.contactus');
+    }
+    
+    public function contact_message_store(Request $request){
+        $data = array(
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'date' => date('d.m.y')
+        );
+        DB::table('contact_messages')->insert($data);
+        Session::flash('success', 'Your form has been submitted successfully! We will contact you as soon as possible. Thank you.');
+        return redirect()->back();
+    }
 }
