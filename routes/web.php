@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\ToolListController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StripeController;
@@ -75,4 +76,8 @@ Route::get('/about-us',  [HomeController::class, 'about_us'])->name('frontend.ab
 //contact us page
 Route::get('/contact-us',  [HomeController::class, 'contact_us'])->name('frontend.contact_us');
 Route::post('/contact-message-store',  [HomeController::class, 'contact_message_store'])->name('contact.message.store');
+
+
+//search
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 

@@ -26,6 +26,7 @@ class ToolsController extends Controller
             'type' => $request->type,
             'category_id' => $request->category_id,
             'title' => $request->title,
+            'slug' =>  Str::slug($request->title . '-'),
             'subtitle' => $request->subtitle,
             'price' => $request->price,
             'description' => $request->description,
@@ -63,6 +64,7 @@ class ToolsController extends Controller
     public function update(Request $request){
         $data = array(
             'type' => $request->type,
+            'slug' =>  Str::slug($request->title . '-'),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'subtitle' => $request->subtitle,

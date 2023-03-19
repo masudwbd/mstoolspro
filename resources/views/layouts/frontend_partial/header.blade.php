@@ -29,32 +29,39 @@
             <i class="fas fa-search"></i>
             <input class="input-open-search" id="open-search" type="checkbox" name="menu" />
             <div class="search">
-                <button class="button-search"><i class="fas fa-search"></i></button>
-                <input type="text" placeholder="What are you looking for?" class="input-search" />
+                <form action="{{ route('search') }}"">
+                    @csrf
+                    <button type="submit" class="button-search"><i class="fas fa-search"></i></button>
+                    <input type="text" name='search' placeholder="What are you looking for?" class="input-search" />
+                </form>
             </div>
         </label>
         <!-- // search -->
         <nav class="nav-content" style="width:200px">
             <div class="d-flex justify-content-between">
-                <div >
-                    <a  href="{{route('user.profile')}}" >
-                            @if (Auth::user())
-                            <label class="" style="cursor:pointer" class="open-menu-login-account" for="open-menu-login-account">
-                                <img src="{{asset(Auth::user()->image)}}" style="height:30px;width:30px;border-radius:50%"  alt="">
+                <div>
+                    <a href="{{ route('user.profile') }}">
+                        @if (Auth::user())
+                            <label class="" style="cursor:pointer" class="open-menu-login-account"
+                                for="open-menu-login-account">
+                                <img src="{{ asset(Auth::user()->image) }}"
+                                    style="height:30px;width:30px;border-radius:50%" alt="">
                                 {{ Auth::user()->name }}
                                 <span class="item-arrow"></span>
                             </label>
-                            @else
-                            <label class="" style="cursor:pointer" class="open-menu-login-account" for="open-menu-login-account">
+                        @else
+                            <label class="" style="cursor:pointer" class="open-menu-login-account"
+                                for="open-menu-login-account">
                                 <i class="fas fa-user-circle mr-2"></i>
                                 Create Account
                                 <span class="item-arrow"></span>
                             </label>
-                            @endif
+                        @endif
                     </a>
                 </div>
                 <div class="mt-1">
-                    <div class="nav-content-item"><a class="nav-content-link" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket "></i></a></div>
+                    <div class="nav-content-item"><a class="nav-content-link" href="{{ route('logout') }}"><i
+                                class="fa-solid fa-right-from-bracket "></i></a></div>
                 </div>
             </div>
         </nav>
