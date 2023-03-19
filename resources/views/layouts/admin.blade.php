@@ -21,16 +21,12 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/sweetalert2/sweetalert2.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/toastr/toastr.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"  />
 
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <!DOCTYPE html>
@@ -52,19 +48,8 @@
                 @yield('admin_content')
             </div>
         </div>
-        <script>
-    
-        </script>
-    
-        <script src="{{asset('js/custom.js')}}"></script>
-        <script src="https://kit.fontawesome.com/f698781556.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- ./wrapper -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
+           <!-- jQuery -->
+           <script src="https://kit.fontawesome.com/f698781556.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -93,7 +78,74 @@
     <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
-    {!! Toastr::message() !!}
+    <script src="{{ asset('backend') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="{{ asset('backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend') }}/dist/js/adminlte.min.js"></script>
+    
+    <!-- AdminLTE for demo purposes -->
+    {{-- <script src="{{ asset('backend') }}/dist/js/demo.js"></script> --}}
+    <!-- Page specific script -->
+    <script>
+        function deleteItem(item_id) {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this item!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    // Call the delete route with the item ID
+                    window.location.href = "/items/" + item_id + "/delete";
+                }
+            });
+        }
+    </script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+          // Summernote
+          $('.textarea').summernote()
+      
+          // CodeMirror
+          CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+          });
+        })
+      </script>
+
     </body>
     
 </html>

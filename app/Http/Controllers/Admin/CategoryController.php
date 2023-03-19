@@ -5,14 +5,30 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use DataTables;
 use Toastr;
+
 
 class CategoryController extends Controller
 {
     public function index(Request $request){
-        $categories = DB::table('categories')->get();
-        return view('admin.categories.index' , compact('categories'));
+        if($request->ajax()){
+            $data = DB::table('categories')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action',function($row){
+                    $actionbtn = '<a href="#" class="btn btn-info edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" id="edit"> <i class="fas fa-edit"></i> </a>
+                    <a href="'.route('categories.delete', [$row->id]).'" class="btn btn-danger" id="delete"> <i class="fas fa-trash" ></i>
+                    </a>';
+
+                    return $actionbtn;
+                })
+                -> rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.categories.index');
     }
+
     public function add(Request $request){
         return view('admin.categories.add');
     }

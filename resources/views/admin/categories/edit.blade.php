@@ -1,4 +1,4 @@
-<form action="{{route('categories.update')}}" method="POST">
+<form action="{{route('categories.update')}}" class="p-4" method="POST">
     @csrf
     <div class="form-group">
         <label for="">Category Name</label>

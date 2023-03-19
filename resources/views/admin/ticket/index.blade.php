@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('admin_content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -6,10 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Settings</h1>
+                        <h1 class="m-0">Tools</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-
+                        <ol class="breadcrumb float-sm-right">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Add
+                                New</button>
+                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -21,11 +25,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Categories List Here</h3>
+                                <h3 class="card-title">All Tools List Here</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="" class="table table-bordered table-striped ytable">
                                     <thead>
                                         <tr>
                                             <th>SL</th>
@@ -35,29 +39,10 @@
                                             <th>Service</th>
                                             <th>Message</th>
                                             <th>Image</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                @php
-                                                    $user = DB::table('users')->where('id', $item->user_id)->first();
-                                                @endphp
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $item->subject }}</td>
-                                                <td>{{ $item->priority }}</td>
-                                                <td>{{ $item->service }}</td>
-                                                <td>{{ $item->message }}</td>
-                                                <td><img src="{{asset($item->image)}}" alt=""></td>
-                                                <td>
-                                                    <a href="{{route('admin.ticket.show', $item->id)}}" class="btn btn-info edit"> <i class="fas fa-eye"></i> </a>
-                                                    <a href="{{ route('categories.delete',$item->id) }}" class="btn btn-danger"
-                                                        id="delete"> <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -74,4 +59,77 @@
         </section>
     </div>
 
+    {{-- Edit Modal --}}
+    <div class="modal fade" class="" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit_child_category">Edit Subcategory</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script>
+        $(function tools() {
+            var table = $('.ytable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.ticket.index') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'user_id',
+                        name: 'user_id'
+                    },
+                    {
+                        data: 'subject',
+                        name: 'subject'
+                    },
+                    {
+                        data: 'priority',
+                        name: 'priority'
+                    },
+                    {
+                        data: 'service',
+                        name: 'service'
+                    },
+                    {
+                        data: 'message',
+                        name: 'message'
+                    },
+                    {
+                        data: 'image',
+                        name: 'image'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
+            });
+        });
+
+
+
+        $('body').on('click', '.edit', function() {
+            let subcat_id = $(this).data('id');
+            $.get("freetools/edit/" + subcat_id, function(data) {
+                $("#modal-body").html(data);
+            });
+        });
+    </script>
 @endsection

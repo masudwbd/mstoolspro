@@ -1,4 +1,4 @@
-<form action={{ route('tools.update') }} method="POST" enctype="multipart/form-data">
+<form action={{ route('tools.update') }} method="POST" class="p-3" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-lg-6">

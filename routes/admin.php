@@ -54,7 +54,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'is_a
         Route::get('/admin-ticket-show/{id}',[TicketController::class,'ticket_show'])->name('admin.ticket.show');
         Route::post('/admin-ticket-reply',[TicketController::class,'ticket_reply'])->name('admin.ticket.reply');
         // Route::get('/admin-ticket-close/{id}',[TicketController::class,'ticket_close'])->name('admin.ticket.close');
-        // Route::get('/ticket-delete/{id}/',[TicketController::class,'destroy'])->name('ticket.delete');
+        Route::get('/ticket-delete/{id}/',[TicketController::class,'destroy'])->name('admin.ticket.delete');
         // Route::get('edit/{id}/',[PageController::class,'edit'])->name('page.edit');
         // Route::post('update/{id}/',[PageController::class,'update'])->name('page.update');
     });
