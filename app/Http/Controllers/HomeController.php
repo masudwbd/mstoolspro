@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Session;
+use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller
 {
     /**
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->back();
+        return redirect()->route('login');
     }
 
 

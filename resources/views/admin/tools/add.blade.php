@@ -75,6 +75,7 @@
                                                         <input type="text" name="price" id=""
                                                             class="form-control" placeholder="Enter Tool Price"
                                                             aria-describedby="helpId">
+                                                        <small style="color:red">Keep the price to 0, if the tool is for free!</small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">Tool Description</label>

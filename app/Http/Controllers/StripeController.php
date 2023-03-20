@@ -39,7 +39,7 @@ class StripeController extends Controller
             'session_id' => $checkout_session->id,
             'tool_name' => $tool->title,
             'tool_price' => $tool->price,
-            'date' => date("m.d.y"),
+            'date' => date('Y-m-d'),
             'status' => 'unpaid',
             'order_id' => Str::random(12),
             'customer_email' => Auth::user()->email,

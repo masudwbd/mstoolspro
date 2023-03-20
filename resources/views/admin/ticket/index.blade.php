@@ -9,18 +9,27 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">Tools</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">+ Add
-                                New</button>
-                        </ol>
-                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
         <section class="content">
             <div class="container-fluid">
+                <div class="row px-3">
+                    <div class="form-group col-3">
+                        <label>Date</label>
+                        <input type="date" name="date" id="date" class="form-control submitable">
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Service</label>
+                        <select class="form-control submitable" name="service" id="service">
+                            <option value="0" selected>All</option>
+                            <option value="technical">Technical</option>
+                            <option value="setup">Setup</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -39,6 +48,7 @@
                                             <th>Service</th>
                                             <th>Message</th>
                                             <th>Image</th>
+                                            <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -82,9 +92,17 @@
     <script>
         $(function tools() {
             var table = $('.ytable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('admin.ticket.index') }}",
+                "processing": true,
+                "serverSide": true,
+                "searching": true,
+                "ajax": {
+                    "url": "{{ route('admin.ticket.index') }}",
+                    "data": function(e) {
+                        e.date = $("#date").val();
+                        e.service = $("#service").val();
+
+                    }
+                },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -111,7 +129,14 @@
                     },
                     {
                         data: 'image',
-                        name: 'image'
+                        name: 'image',
+                        render: function(data, type, full, meta) {
+                            return "<img src=\"" + data + "\"  height=\"30\" />";
+                        }
+                    },
+                    {
+                        data: 'date',
+                        name: 'date'
                     },
                     {
                         data: 'action',
@@ -121,6 +146,10 @@
                     },
                 ]
             });
+        });
+
+        $(document).on('change', '.submitable', function() {
+            $('.ytable').DataTable().ajax.reload();
         });
 
 

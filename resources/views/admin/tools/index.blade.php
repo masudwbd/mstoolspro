@@ -107,7 +107,10 @@
                     },
                     {
                         data: 'thumbnail',
-                        name: 'thumbnail'
+                        name: 'thumbnail',
+                        render: function(data, type, full, meta) {
+                            return "<img src=\"" + data + "\"  height=\"30\" />";
+                        }
                     },
                     {
                         data: 'price',

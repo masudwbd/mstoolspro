@@ -35,7 +35,7 @@ class TicketController extends Controller
                     </a>';
                     return $actionbtn;
                 })
-                ->rawColumns(['action', 'status','service'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         return view('admin.ticket.index');
@@ -52,14 +52,14 @@ class TicketController extends Controller
             'ticket_id' => $request->ticket_id,
             'user_id' => $request->user_id,
             'message' => $request->message,
-            'date' => date("m.d.y")
+            'date' => date('Y-m-d')
         );
 
         DB::table('replies')->insert($data);
         return redirect()->back();
     }
 
-    public function delete($id){
+    public function destroy($id){
         DB::table('tickets')->where('id' , $id)->delete();
         return redirect()->back();
     }

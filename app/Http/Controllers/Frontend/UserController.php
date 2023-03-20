@@ -75,6 +75,7 @@ class UserController extends Controller
             'service' => $request->service,
             'priority' => $request->priority,
             'message' => $request->message,
+            'date' => date('Y-m-d'),
         );
         $photo = $request->image;
         $photoname = uniqid().'.'.$photo->getClientOriginalExtension();

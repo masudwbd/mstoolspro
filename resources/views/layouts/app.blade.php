@@ -22,6 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/sweetalert2/sweetalert2.css">
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -37,6 +38,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -65,20 +67,26 @@
         }
     })
 </script>
-
-
-<script>
-    const chatIcon = document.getElementById('chat-icon');
-    const chatWindow = document.getElementById('chat-window');
-
-
-    chatIcon.addEventListener('click', function() {
-        if (chatWindow.style.display === 'block') {
-            chatWindow.style.display = 'none';
-        } else {
-            chatWindow.style.display = 'block';
-        }
+<script type="text/javascript">
+    $(document).on('click', '.logout', function(e) {
+        event.preventDefault();
+        var link = $(this).attr("href");
+        swal({
+            title: 'Are you sure?',
+            text: 'Confirm logout',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.location.href = link;
+            } else {
+                swal('You are logged in!');
+            }
+        })
     });
 </script>
+
+
 
 </html>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
+@section('content')
 @include('layouts.frontend_partial.header')
 @include('layouts.frontend_partial.navbar')
-@section('content')
     @php
         $settings = DB::table('settings')->first();
     @endphp

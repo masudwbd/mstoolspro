@@ -25,7 +25,7 @@ class ToolsController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action',function($row){
                     $actionbtn = '<a href="#" class="btn btn-info edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" id="edit"> <i class="fas fa-edit"></i> </a>
-                    <a href="'.route('tools.delete', [$row->id]).'" class="btn btn-danger" id="delete"> <i class="fas fa-trash" ></i>
+                    <a href="'.route('tools.delete', [$row->id]).'" class="btn btn-danger button" id="delete"> <i class="fas fa-trash" ></i>
                     </a>';
 
                     return $actionbtn;

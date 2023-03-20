@@ -62,8 +62,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'middleware' => 'is_a
     
     //orders
     Route::get('/orders',  [OrderController::class, 'index'])->name('orders.all');
-    Route::get('/orders-delivered',  [OrderController::class, 'delivered'])->name('order.delivered');
-    Route::get('/orders-not-delivered',  [OrderController::class, 'not_delivered'])->name('order.not.delivered');
+    Route::get('/orders-delivered/{id}',  [OrderController::class, 'delivered'])->name('order.delivered');
+    Route::get('/orders-not-delivered/{id}',  [OrderController::class, 'not_delivered'])->name('order.not.delivered');
 
 
     //blogs

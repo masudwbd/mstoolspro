@@ -9,11 +9,25 @@ use DB;
 use Image;
 use File;
 use Brian2694\Toastr\Facades\Toastr;
+use DataTables;
 class BlogController extends Controller
 {
-    public function index(){
-        $data = DB::table('blogs')->orderBy('date')->get();
-        return view('admin.blogs.index', compact('data'));
+    public function index(Request $request){
+        if($request->ajax()){
+            $data = DB::table('blogs')->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action',function($row){
+                    $actionbtn = '<a href="#" class="btn btn-info edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" id="edit"> <i class="fas fa-edit"></i> </a>
+                    <a href="'.route('blog.delete', [$row->id]).'" class="btn btn-danger button"> <i class="fas fa-trash" ></i>
+                    </a>';
+
+                    return $actionbtn;
+                })
+                -> rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.blogs.index');
     }
     public function add(){
         return view('admin.blogs.add');
@@ -69,7 +83,7 @@ class BlogController extends Controller
 
     public function delete($id){
         DB::table('blogs')->where('id' , $id)->delete();
-        Toastr::error('Blog Deleted!', 'Title', ["positionClass" => "toast-top-right"]);
-        return redirect()->back();
+        $notification=array('messege' => 'Blog Deleted!', 'alert-type' => 'error');
+        return redirect()->back()->with($notification);
     }
 }

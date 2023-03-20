@@ -1,4 +1,5 @@
 <!-- contact content -->
+@include('sweetalert::alert')
 
 @php
     $settings = DB::table('settings')->first();
@@ -60,8 +61,8 @@
                     </a>
                 </div>
                 <div class="mt-1">
-                    <div class="nav-content-item"><a class="nav-content-link" href="{{ route('logout') }}"><i
-                                class="fa-solid fa-right-from-bracket "></i></a></div>
+                    <div class="nav-content-item"><a class="nav-content-link logout"  href="{{ route('logout') }}"><i
+                                class="fa-solid fa-right-from-bracket " id="logout"></i></a></div>
                 </div>
             </div>
         </nav>
